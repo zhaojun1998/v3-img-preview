@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="v-images-wrap" ref="vImagesWrap" v-if="visible">
+    <div class="v-images-wrap" @click="handleClickMaskClose" ref="vImagesWrap" v-if="visible">
       <!--   载入loading     -->
       <svg
         class="icon img-loading rotate-animation"
@@ -308,6 +308,13 @@ export default defineComponent({
       init()
     })
 
+    function handleClickMaskClose(event: PointerEvent) {
+		// @ts-ignore
+		if (event.target.classList.contains('img-container')) {
+			handleClose();
+		}
+    }
+
     /**
      * 关闭图片预览
      */
@@ -344,7 +351,8 @@ export default defineComponent({
       handleScale,
       handleRotate,
       visibleArrowBtn,
-      isMultiple
+      isMultiple,
+      handleClickMaskClose
     }
   }
 })
